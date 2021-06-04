@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시글 상세보기</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	let receiveArr=[]; //쿼리스트링 매개변수
+	let uri = location.search; //모든 쿼리스트링을 저장
+	let receive = uri.substr(uri.indexOf("?") + 1) //쿼리스트링에서 ?를 제외한 나머지
+	let receiveNo = receive.split("=")[1]; //=를 기준으로 자른 값들 중 숫자
+	
+	let no = receiveNo; //글번호
+	
+	
+	$("#goBoardList").click(function(){
+		location.href="boardList.html";
+	});
+	
+});
+
+</script>
+</head>
+<body>
+<div class="detailTitleArea">
+	<h3 class="detailTitleArea title"></h3>
+	<span class="detailTitleArea date"></span>
+</div>
+<div class="detailContentArea">
+
+</div>
+<button id="goBoardList">전체글</button>
+</body>
+</html>
