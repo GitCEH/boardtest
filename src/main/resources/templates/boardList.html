@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판 목록</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	let pullData;
+	
+	$.ajax({url:"/boardList.do",success:function(data){
+		
+		pullData = eval("(" + data + ")");
+		
+		$.each(pullData,function(index,b){
+			let tr = $("<tr></tr>");
+			
+			let td_no = $("<td></td>").html(b.no); //게시물 번호
+			let title_anc = $("<a></a>").attr("href","boardDetail?no=" + b.no); //게시물 제목에 링크
+			$(title_anc).html(b.title);
+			let td_title = $("<td></td>").html(title_anc); //게시물 제목
+			let td_date = $("<td></td>").html(b.date); //등록일시
+			let td_hit = $("<td></td>").html(b.hit); // 조회수
+			
+			$(tr).append(td_no,td_title,td_date,td_hit);
+			$("#boardBody").append(tr);
+			
+		});
+	}});
+	
+});
+</script>
+</head>
+<body>
+<table>
+	<tbody id="boardBody">
+		<tr>
+			<th>글번호</th>
+			<th>글제목</th>
+			<th>등록일</th>
+			<th>조회수</th>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
